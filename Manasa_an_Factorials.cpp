@@ -16,7 +16,7 @@ using namespace std;
 
 
 // this is used to count number of trailing zeros in m!( ! means factorial)
-// for on trailing zeros :- https://brilliant.org/wiki/trailing-number-of-zeros/
+// for more on trailing zeros :- https://brilliant.org/wiki/trailing-number-of-zeros/
 
 ll countingTrailingZeros(ll m)                        
 {
