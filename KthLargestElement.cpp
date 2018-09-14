@@ -114,14 +114,13 @@ int kthLargestElement(int k, vector<int> &a)
         h.push(a[i]);
     }
 
-    while(1)
+    while(k > 1)
     {
         int ans = h.front();
         h.pop();
         k--;
-        if(k == 0)
-            return ans;
     }
+    return h.front();
 
 }
 
