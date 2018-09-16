@@ -17,10 +17,11 @@ For pushing element in queue is easy, Just push elements in enq stack
 But when we have to get the front or to delete the front of the queue
 Then we have to check for one condition
 i.e.  If the deq stack is empty, then we have to push all the values of 
-      enq stack into deq and after this process delete the top of deq 
-      stack or get the value the top of deq stack(depend on user).
+      enq stack into deq.
+      After above process, delete the top of deq stack or get the value 
+      of the top of deq stack(depend on user).
      
-First try it yourself And if you get stuck(after trying 3-4 times) then feel to take help from the below code
+First try it yourself And if you get stuck(after trying 3-4 times) then feel free to take help from the below code
 */
 
 #include <bits/stdc++.h>
