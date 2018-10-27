@@ -14,7 +14,7 @@ output:
 
 //Solution
 /*
-  1) Simple Solution is to linearly traverse to the left and right of the number. And the answer is the value who has min absolute diff. with
+  1) Simple Solution is to linearly traverse to the left and right of the number. And the answer is the palindromic value who has min absolute diff. with
   the n.
   
   2) There exist simple solution in which we only need 5 values to get the closest plaindrome to n.
