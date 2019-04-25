@@ -1,10 +1,17 @@
+/**
+ * Created with IntelliJ IDEA.
+ * User: manish_sharma
+ * Date: 25/4/19
+ * Time: 12:09 PM
+ * To change this template use File | Settings | File Templates.
+ */
 
 import java.util.*;
 public class Main
 {
-    public static ArrayList a = new ArrayList<Integer>();
-    
-	public static boolean subsetSum(int[] set, int sum) {
+    public static ArrayList al = new ArrayList<Integer>();
+
+    public static boolean subsetSum(int[] set, int sum) {
         boolean[][] arr = new boolean[set.length + 1][sum + 1];
         int[][] b = new int[set.length + 1][sum + 1];
         for (int i = 0; i < set.length + 1; i++) {
@@ -33,34 +40,55 @@ public class Main
         printSubSet(set, b, set.length, sum);
         return arr[set.length][sum];
     }
- 
+
     private static void printSubSet(int[] set, int[][] b, int n, int m) {
         if (b[n][m] == 1) {
             printSubSet(set, b, n - 1, m);
         } else if (b[n][m] == 2) {
             printSubSet(set, b, n - 1, m - set[n - 1]);
-            System.out.println(set[n - 1] + "hh");
-            a.add(set[n - 1]);
+//            System.out.println(set[n - 1]);
+            al.add(set[n - 1]);
         }
- 
+
     }
- 
-    public static int FindMaxSum(int arr[], int n) 
-    { 
-        int incl = arr[0]; 
-        int excl = 0; 
-        int excl_new; 
-        int i; 
-  
-        for (i = 1; i < n; i++) 
-        { 
-            excl_new = (incl > excl) ? incl : excl; 
-            incl = excl + arr[i]; 
-            excl = excl_new; 
-        } 
-  
-        return ((incl > excl) ? incl : excl); 
-    } 
+
+    public static int FindMaxSum(int arr[], int n)
+    {
+        int incl = arr[0];
+        int excl = 0;
+        int excl_new;
+        int i;
+
+        for (i = 1; i < n; i++)
+        {
+            excl_new = (incl > excl) ? incl : excl;
+            incl = excl + arr[i];
+            excl = excl_new;
+        }
+
+        return ((incl > excl) ? incl : excl);
+    }
+
+    public static boolean IsAllNeg(int a[])
+    {
+        for(int i = 0; i < a.length; i++)
+        {
+            if(a[i] >= 0)
+                return false;
+        }
+        return true;
+    }
+
+    public static int findMax(int a[])
+    {
+        int mx = a[0];
+        for(int i = 0; i < a.length; i++)
+        {
+            if(a[i] > mx)
+                mx = a[i];
+        }
+        return  mx;
+    }
     public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
         int t = in.nextInt();
@@ -70,13 +98,31 @@ public class Main
             int a[] = new int[n];
             for(int i = 0; i < n; i++)
                 a[i] = in.nextInt();
-            
-            int sum = FindMaxSum(a, n);
-            // System.out.println(sum);
-            
-            System.out.println(subsetSum(a, sum));
-            for(int x: a)
-                System.out.print(x + " ");
+
+            if(IsAllNeg(a))
+            {
+                System.out.println(findMax(a));
+            }
+            else
+            {
+                int sum = FindMaxSum(a, n);
+//                System.out.println(sum);
+
+                for(int i = 0; i < a.length; i++)
+                {
+                    if(a[i] < 0)
+                        a[i] = 0;
+                }
+                boolean flag = subsetSum(a, sum);
+                for(int i = al.size() - 1; i >= 0; i--)
+                {
+                    if(al.get(i) != (Object)0)
+                    System.out.print(al.get(i));
+                }
+                System.out.println();
+                al.clear();
+            }
+
         }
     }
 }
