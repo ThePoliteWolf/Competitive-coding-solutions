@@ -3,16 +3,26 @@ using namespace std;
 
 #define lli long long int
 
-vector < int > numToDigits(int n)
+set < int > numToDigits(int n)
 {
-    vector < int > digit;
+    set < int > digit;
     while(n > 0)
     {
-        digit.push_back(n % 10);
+        digit.insert(n % 10);
         n /= 10;
     }
     return digit;
 }
+
+/*
+3
+4
+3 5 7 2
+5
+121 23 3 333 4
+7
+32 42 52 62 72 82 92
+*/
 
 int main()
 {
@@ -28,43 +38,37 @@ int main()
             cin >> a[i];
 
         lli max_sum = 0;
+
         for(int i = 0; i < n; i++)
         {
-            set < int > s;
-            lli curr_sum = 0;
-            curr_sum += a[i];
-            vector < int > digit = numToDigits(a[i]);
-            for(int k = 0; k < digit.size(); k++)
-            {
-                s.insert(digit[k]);
-                //cout << digit[k] << " ";
-            }
+            set < int > s = numToDigits(a[i]);
+            lli curr_sum = a[i];
 
             for(int j = 0; j < n; j++)
             {
                 if(i != j)
                 {
-                    digit = numToDigits(a[j]);
+                    set < int > digit = numToDigits(a[j]);
                     int f = 1;
-                    for(int k = 0; k < digit.size(); k++)
+                    for(auto it = digit.begin(); it != digit.end(); it++)
                     {
-                        auto ins = s.insert(digit[k]);
-                        if(ins.second == false)
+                        auto ins = s.insert(*it);
+
+                        if(ins.second == false) // duplicate found
                         {
                             f = 0;
-                            //cout << a[i] << "=>" << a[j] << "\n";
                             break;
                         }
                     }
                     if(f)
                     {
                         curr_sum += a[j];
-                        cout << a[i] << "=>" << a[j] << "\n";
                     }
                 }
             }
 
             max_sum = max(max_sum, curr_sum);
+           // cout << max_sum << "\n";
         }
         cout << max_sum << "\n";
     }
