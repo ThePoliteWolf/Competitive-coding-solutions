@@ -15,7 +15,7 @@ set < int > numToDigits(int n)
 }
 
 /*
-3
+5
 4
 3 5 7 2
 5
@@ -47,33 +47,34 @@ int main()
         {
             set < int > s = numToDigits(a[i]);
             lli curr_sum = a[i];
-            cout << curr_sum << " ";
+
             for(int j = 0; j < n; j++)
             {
                 if(i != j)
                 {
                     set < int > digit = numToDigits(a[j]);
                     int f = 1;
+
                     for(auto it = digit.begin(); it != digit.end(); it++)
                     {
-                        auto ins = s.insert(*it);
-
-                        if(ins.second == false) // duplicate found
+                        if(s.count(*it))
                         {
                             f = 0;
                             break;
                         }
                     }
+
                     if(f)
                     {
                         curr_sum += a[j];
-                        cout << a[j] << " ";
+                        for(auto it = digit.begin(); it != digit.end(); it++)
+                            s.insert(*it);
                     }
                 }
             }
 
             max_sum = max(max_sum, curr_sum);
-            cout << "\n";
+
             // cout << max_sum << "\n";
         }
         cout << max_sum << "\n";
