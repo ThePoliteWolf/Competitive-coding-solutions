@@ -22,6 +22,10 @@ set < int > numToDigits(int n)
 121 23 3 333 4
 7
 32 42 52 62 72 82 92
+35
+984 981 976 950 899 890 887 885 880 800 798 790 777 767 750 701 697 688 680 678 650 599 567 589 550 501 9 8 7 6 5 4 3 2 1
+10
+89 79 67 65 48 47 10 10 10 10
 */
 
 int main()
@@ -43,7 +47,7 @@ int main()
         {
             set < int > s = numToDigits(a[i]);
             lli curr_sum = a[i];
-
+            cout << curr_sum << " ";
             for(int j = 0; j < n; j++)
             {
                 if(i != j)
@@ -63,12 +67,14 @@ int main()
                     if(f)
                     {
                         curr_sum += a[j];
+                        cout << a[j] << " ";
                     }
                 }
             }
 
             max_sum = max(max_sum, curr_sum);
-           // cout << max_sum << "\n";
+            cout << "\n";
+            // cout << max_sum << "\n";
         }
         cout << max_sum << "\n";
     }
